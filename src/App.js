@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+import Home from './routes/Home';
+import Detail from './routes/Detail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Router>
+      <header className='header'>
+        <div className='container header-inner'>
+          <div className='brand'>CineMix</div>
+          <nav className='nav'>
+            <NavLink
+              to='/'
+              end
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+              홈
+            </NavLink>
+          </nav>
+        </div>
       </header>
-    </div>
+      <main className='container'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/movie/:id' element={<Detail />} />
+        </Routes>
+        <div className='spacer' />
+      </main>
+    </Router>
   );
 }
 
